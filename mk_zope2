@@ -71,7 +71,12 @@ def save_status(status):
 def guess_zope_instances():
     instances = set()
     for p in psutil.get_process_list():
-        zconf = [arg for arg in p.cmdline if "zope.conf" in arg]
+        try:
+            zconf = [arg for arg in p.cmdline() if "zope.conf" in arg]
+        except:
+            # Compliant with psutils < 2.something
+            zconf = [arg for arg in p.cmdline if "zope.conf" in arg]
+
         if zconf:
             if zconf[0][0] == '/':
                 zconf = zconf[0]
@@ -160,6 +165,7 @@ def zope_monitor(conffile):
             color = {'C': tty_red, 'W': tty_yellow, 'I': tty_blue, '.': ''}[level]
             outputtxt += "%s%s %s=%s%s\n" % (color, level, plugin, ','.join(pluginout), tty_normal)
         except:
+            return
             ## TODO: set the right level
             level = '.'
             color = tty_yellow

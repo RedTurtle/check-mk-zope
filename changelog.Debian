@@ -35,3 +35,8 @@ check-mk-agent-zope (1.1-2) unstable; urgency=low
  * Correct a bug in the function used to discover instances
 
  -- Andrea Zauli <andrea@biodec.com>  Thu, 5 Jul 2012 14:50:55 +0100
+check-mk-agent-zope (1.2-0) unstable; urgency=low
+
+ * Supporto jessie+ omd-1.20
+
+ -- Alessandro Pisa <alessandro.pisa@redturtle.it>  Thu, 17 Dec 2015 12:00:00 +0100
